@@ -95,6 +95,7 @@ func columnInTableHeader(s string, column []string) bool {
 	}
 	return true
 }
+//检查索引index是否在切片索引columnIndex中
 func checkIndex(index int, columnIndex []int) bool {
 	indexMap := make(map[int]bool)
 	for _, v := range columnIndex {
