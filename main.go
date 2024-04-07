@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	tableHead := []string{"MemTotal", "MemUsed", "MemFree", "SwapTotalhelloworldchina", "SwapUsed", "SwapFree"}
+	tableHead := []string{"MemTotal", "MemUsedhelloworldchina", "Memfree", "SwapTotal", "SwapUsed", "SwapFree"}
 	row := [][]string{}
 	row1 := []string{"guangdongshenzhen", "212345678901112131415161711111111111111111111", "3", "4", "5", "6"}
 	row2 := []string{"chinabeijing", "8", "33", "i664", "heilongjiangshengdaqing", "6"}
@@ -16,6 +16,7 @@ func main() {
 	//初始化
 	t := table.InitTable(tableHead)
 	//设置列名对齐方式(必选),0:left,1:right,2:center
+	t.SetAlignmentMode()
 	/*
             列名支持多种方式:
 	    1、什么都不输入:           t.SetAlignment(0),表示将全部列设置为左对齐
@@ -23,7 +24,7 @@ func main() {
 	    3、输入的列名中包含"all":  t.SetAlignment(0,"all","MemTotal"),也是设置全部列为左对齐
 	    4、不包含"all",包含指定列: t.SetAlignment(0,"MemTotal","MemFree"),设置对应列为左对齐
 	*/
-	t.SetAlignment(0, "MemUsed")
+	t.SetAlignmentColumn("MemTotal")
 	//设置颜色
 	//	t.SetColor()
 	t.CreateTable(tableHead, row)
