@@ -73,7 +73,7 @@ func checkrepeat(slice [][]string) [][]string {
 	return slice
 }
 
-// 检查一个切片元素在另一个切片中索引
+// 检查一个切片元素在另一个切片中索引,返回int切片
 func checkSliceIndex(column, tableHeader []string) []int {
 	mapp := make(map[string]int)
 	var newslice []int
