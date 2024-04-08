@@ -9,9 +9,12 @@ import (
 type Table struct {
 	tableHeader []string //表头内容
 	//	maxlen      []string //表头和内容对应索引位置的值的最大长度组成的新切片,后续使用此长度创建表的宽度,这样才会对齐
-	columnName  []string //表列名
-	columnColor string   //列的颜色
-	alignment   int      //对齐方式
+	columnName      []string //表列名
+	columnColor     string   //列的颜色
+	alignment       int      //对齐方式
+	colorColumn     []string //颜色列
+	foregroundcolor int      //前景色
+	backgroundcolor int      //背景色
 }
 
 // 初始化表
@@ -25,26 +28,27 @@ func InitTable(tableHeader []string) *Table {
 		return &Table{}
 	}
 }
+//设置对齐模式,可接收任意数量参数,返回的alignment为int类型切片
 func (t *Table) SetAlignmentMode(alignment ...int) {
 	if len(alignment) == 0 {
+		//如果没有设置alignment,就设置默认模式为居中
 		t.alignment = 2
 	} else if len(alignment) == 1 {
+		//检查alignment切片的中元素是多少
 		align := checkColumnAlignment(alignment[0])
 		if align == 5 {
-
 			fmt.Println("Error:", "Alignment parameter error,Can only select 0,1,2")
 			os.Exit(-1)
 		} else {
 			t.alignment = align
 		}
-
 	} else {
-               fmt.Println("Error:","Only one parameter can be entered,Can only select 0,1,2")
-	       os.Exit(-1)
+		fmt.Println("Error:", "Only one parameter can be entered,Can only select 0,1,2")
+		os.Exit(-1)
 	}
 }
 
-// 设置要对齐的列
+// 设置要对齐的列,接收任意数量参数,返回的columnName为字符串切片
 func (t *Table) SetAlignmentColumn(columnName ...string) {
 	if len(t.tableHeader) != 0 {
 		var columnNameSlice []string
@@ -58,6 +62,7 @@ func (t *Table) SetAlignmentColumn(columnName ...string) {
 				                          columnName不为空有可能出现多种情况,比如只输入了all,或者同时输入了all和其他列名或者没输入all而输入了其他列名
 							  在这里我们设置只要切片中出现了all元素,那么就默认为设置全部列名
 			*/
+			//检查columnName中是否包含all
 			b := checkColumnName(columnName)
 			//如果b为true,说明columnName中是包含all的,因此视为设置全部的列
 			if b {
@@ -73,7 +78,6 @@ func (t *Table) SetAlignmentColumn(columnName ...string) {
 				} else {
 					//len(s)等于0,此时要设置的列是正确的,开始设置
 					t.columnName = columnName
-
 				}
 			}
 		}
@@ -83,9 +87,72 @@ func (t *Table) SetAlignmentColumn(columnName ...string) {
 	}
 }
 
-// 设置颜色
-func (t *Table) SetColor(columnName, columnColor string) {
+// 要设置颜色的列
+func (t *Table) SetColorColumn(colorColumnName ...string) {
+	var colorColumnSlice []string
+	if len(colorColumnName) == 0 {
+		//如果没有设置颜色列,默认设置所有列,因此切片中添加all
+		colorColumnSlice = append(colorColumnSlice, "all")
+		t.colorColumn = colorColumnSlice
+	} else {
+		//设置了颜色列,但是要检查下其中是否包含all,如果有all,那么也是设置全部列
+		b := checkColumnName(colorColumnName)
+		if b {
+			colorColumnSlice = append(colorColumnSlice, "all")
+			t.colorColumn = colorColumnSlice
+		} else {
+			//不包含all,将要设置的列与表头对比看下是否有输入错误
+			s := columnNameCompare(colorColumnName, t.tableHeader)
+			if len(s) != 0 {
+				fmt.Printf("colorColumn Name %v Input Error,Please input again!!!\n", s)
+				os.Exit(-1)
+			} else {
+				//len(s)等于0,此时要设置的列是正确的,开始设置
+				t.colorColumn = colorColumnName
+			}
+		}
+	}
+}
 
+// 设置颜色前景色
+func (t *Table) SetForegroundColor(foregroundcolor ...int) {
+	if len(foregroundcolor) == 0 {
+		//前景色没设置,那么就设置默认值为37(白字)
+		t.foregroundcolor = 37
+	} else if len(foregroundcolor) == 1 {
+		//检查前景色的值输入是否正确
+		b := checkFGroundColor(foregroundcolor[0])
+		if b {
+			t.foregroundcolor = foregroundcolor[0]
+		} else {
+			fmt.Println("foregroundcolor input error,Only one integre can be entered!!!")
+			os.Exit(-1)
+		}
+	} else {
+		//输入超过一个值
+		fmt.Println("foregroundcolor input error,Only one integre can be entered!!!")
+		os.Exit(-1)
+	}
+}
+
+// 设置背景色
+func (t *Table) SetBackgroundColor(backgroundcolor ...int) {
+	if len(backgroundcolor) == 0 {
+		//背景色没设置,默认设置为黑背景色
+		t.backgroundcolor = 40
+	} else if len(backgroundcolor) == 1 {
+		//检查背景色值输入是否正确
+		b := checkBGroundColor(backgroundcolor[0])
+		if b {
+			t.backgroundcolor = backgroundcolor[0]
+		} else {
+			fmt.Println("foregroundcolor input error,Only one integre can be entered!!!")
+			os.Exit(-1)
+		}
+	} else {
+		fmt.Println("foregroundcolor input error,Only one integre can be entered!!!")
+		os.Exit(-1)
+	}
 }
 
 // main中调用此函数
@@ -102,7 +169,6 @@ func (t *Table) CreateTable(tableheader []string, row [][]string) {
 }
 
 // 创建表和列
-// 定义二维切片,然后把表头的切片和列切片都添加进去
 func (t *Table) CreateTableRow(tableHeader []string, row [][]string) {
 	/*
 		              获取要设置的列在tableHeader中索引,为什么这个调用要放在这里呢,如果放在setSpecifyColumnAlignment函数或者后面的调用
@@ -111,6 +177,7 @@ func (t *Table) CreateTableRow(tableHeader []string, row [][]string) {
 			      位置索引一样,因此必须保证columnIndex的内容全局不可变,否则可能出现表头左对齐了,但是内容还是居中的情况
 	*/
 	columnIndex := checkSliceIndex(t.columnName, tableHeader)
+	colorColumnIndex := checkSliceIndex(t.colorColumn, tableHeader)
 	//二维切片,把表头切片和内容切片都添加进来
 	var totalSlice [][]string
 	totalSlice = append(totalSlice, tableHeader)
@@ -134,10 +201,10 @@ func (t *Table) CreateTableRow(tableHeader []string, row [][]string) {
 		if i != len(totalSlice) {
 			if len(t.columnName) == 1 && strings.TrimSpace(t.columnName[0]) == "all" {
 				//设置整个表的列对齐方式(包括表头和表内容)
-				setAllColumnAlignment(t.alignment, totalSlice[i])
+				setAllColumnAlignment(t.alignment, totalSlice[i],colorColumnIndex,t.foregroundcolor,t.backgroundcolor)
 			} else {
 				//给指定的列设置对齐方式
-				setSpecifyColumnAlignment(t.alignment, totalSlice[i], columnIndex)
+				setSpecifyColumnAlignment(totalSlice[i], t.alignment,t.foregroundcolor,t.backgroundcolor,columnIndex,colorColumnIndex)
 			}
 
 		}
@@ -161,6 +228,7 @@ func (t *Table) CreateTableRow(tableHeader []string, row [][]string) {
 // 创建表头,在没有表内容只有表头的时候调用此函数
 func (t *Table) createTableHeader(tableHeader []string) {
 	columnIndex := checkSliceIndex(t.columnName, tableHeader)
+	colorColumnIndex := checkSliceIndex(t.colorColumn, tableHeader)
 	for j := 0; j <= 1; j++ {
 		//此for循环主要用于打印"------"
 		for i := 0; i < len(tableHeader); i++ {
@@ -175,10 +243,10 @@ func (t *Table) createTableHeader(tableHeader []string) {
 		if j != 1 {
 			if len(t.columnName) == 1 && strings.TrimSpace(t.columnName[0]) == "all" {
 				//设置表头全部列对齐方式
-				setTableHeadAllColAlign(t.alignment, tableHeader)
+				setTableHeadAllColAlign(t.alignment, tableHeader,colorColumnIndex,t.foregroundcolor,t.backgroundcolor)
 			} else {
 				//给指定的列设置对齐方式
-				setTableHeaderColumnAlignment(tableHeader, t.alignment, columnIndex)
+				setTableHeaderColumnAlignment(tableHeader, t.alignment, t.foregroundcolor,t.backgroundcolor, columnIndex,colorColumnIndex)
 			}
 		}
 	}
