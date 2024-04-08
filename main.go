@@ -7,7 +7,7 @@ import (
 func main() {
 	tableHead := []string{"MemTotal", "MemUsedhelloworldchina", "Memfree", "SwapTotal", "SwapUsed", "SwapFree"}
 	row := [][]string{}
-	row1 := []string{"guangdongshenzhen", "212345678901112131415161711111111111111111111", "3", "4", "5", "6"}
+	row1 := []string{"guangdongshenzhen", "212345678901112131415161711111111", "javagocpythonk8sdocker", "4", "5", "6"}
 	row2 := []string{"chinabeijing", "8", "33", "i664", "heilongjiangshengdaqing", "6"}
 	row3 := []string{"shanghai", "linux", "ubuntu", "amd64", "windows", "apple"}
 	row = append(row, row1)
@@ -15,17 +15,30 @@ func main() {
 	row = append(row, row3)
 	//初始化
 	t := table.InitTable(tableHead)
-	//设置列名对齐方式(必选),0:left,1:right,2:center
-	t.SetAlignmentMode()
+	//设置列名对齐方式(非必填,默认为居中),可选择 0:left,1:right,2:center
+	t.SetAlignmentMode(0)
 	/*
-            列名支持多种方式:
-	    1、什么都不输入:           t.SetAlignment(0),表示将全部列设置为左对齐
-	    2、只输入"all":            t.SetAlignment(0,"all"),也表示设置全部列为左对齐
-	    3、输入的列名中包含"all":  t.SetAlignment(0,"all","MemTotal"),也是设置全部列为左对齐
-	    4、不包含"all",包含指定列: t.SetAlignment(0,"MemTotal","MemFree"),设置对应列为左对齐
+            设置列名的对齐方式(非必填),支持多种方式:
+	    1、什么都不输入:           t.SetAlignmentColumn(),                     表示将全部列设置对齐
+	    2、只输入"all":            t.SetAlignmentColumn("all"),                表示设置全部列对齐
+	    3、输入的列名中包含"all":  t.SetAlignmentColumn("all","MemTotal"),     表示设置全部列对齐
+	    4、不包含"all",包含指定列: t.SetAlignmentColumn("MemTotal","MemFree"), 表示设置对应列对齐
 	*/
-	t.SetAlignmentColumn("MemTotal")
-	//设置颜色
-	//	t.SetColor()
+	t.SetAlignmentColumn("SwapFree","MemTotal")
+	/*
+            设置颜色: 分为前景色和背景色
+	    前景色: 30(黑色),31(红色),32(绿色),33(黄色),34(蓝色),35(紫红色),36(青蓝色),37(白色)
+	    背景色: 40(黑色),41(红色),42(绿色),43(黄色),44(蓝色),45(紫红色),46(青蓝色),47(白色)
+	    SetColorColumn(): 设置将哪个列设置颜色,非必填,有多种设置方式,如下:
+	        1、什么都不输入:              SetColorColumn(),                     表示设置所有列的颜色
+	        2、只输入"all":               SetColorColumn("all"),                表示设置所有列的颜色 
+	        3、输入的列中包含"all":       SetColorColumn("MemTotal","all")      表示设置所有列的颜色
+	        4、不包含"all",包含指定列:    SetColorColumn("MemTotal","SwarUsed") 表示设置指定列的颜色
+            SetForegroundColor(): 设置前景色
+	    SetBackgroundColor(): 设置背景色
+	*/
+	t.SetColorColumn("MemTotal")
+	t.SetForegroundColor(33)
+	t.SetBackgroundColor(41)
 	t.CreateTable(tableHead, row)
 }
