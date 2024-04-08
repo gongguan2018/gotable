@@ -17,15 +17,13 @@ func checkColumnAlignment(alignment int) int {
 }
 
 // 设置表头全部列的对齐方式,不包含表内容
-// 下面的for循环用于打印verticalLine 和表头内容
-// 打印中间竖线,4表示格式化4个字符宽度,此处是用空格替代,这4个字符加文本的字符长度刚好等于上面的-的长度,因此不会变形
-func setTableHeadAllColAlign(align int, tableHeader []string) {
-        setAllColumnAlign(align,tableHeader)
+func setTableHeadAllColAlign(align int, tableHeader []string,colorColumnIndex []int,foregroundcolor,backgroundcolor int) {
+        setAllColumnAlign(align,foregroundcolor,backgroundcolor,tableHeader,colorColumnIndex)
 }
 
 // 设置整个表的指定列的对齐方式(包含表头和表内容)
-func setAllColumnAlignment(align int,  tableRow []string) {
-	setAllColumnAlign(align,tableRow)
+func setAllColumnAlignment(align int,  tableRow []string,colorColumnIndex []int,foregroundcolor,backgroundcolor int) {
+	setAllColumnAlign(align,foregroundcolor,backgroundcolor,tableRow,colorColumnIndex)
 }
 
 /*
@@ -33,17 +31,17 @@ func setAllColumnAlignment(align int,  tableRow []string) {
    注: 这个函数设置的列只是表头,没有表内容,也就是在main.go中没有输入row,只有一个tableHeader
 */
 
-func setTableHeaderColumnAlignment(tableHeader []string, align int, columnIndex []int) {
-        setSpecifyColumnAlign(tableHeader,align,columnIndex)
+func setTableHeaderColumnAlignment(tableHeader []string, align,foregroundcolor,backgroundcolor int, columnIndex,colorColumnIndex []int) {
+        setSpecifyColumnAlign(tableHeader,align,foregroundcolor,backgroundcolor,columnIndex,colorColumnIndex)
 }
 
 /*
 这个函数设置的整个表格的指定列对齐方式,包括表头和表内容,可能设置一列也可能设置多列
-因为我们传递过来的column是在main中设置的列名,也就是表头中的名字,但是实际我们还有表格内容,因此就不能只根据这个列名来设置对齐
-否则会出现第一列的表头被设置了左对齐,但是下面的内容没变化,还是居中,因此此时就要根据索引来设置了
-tableRow是每次循环totalSlice传递过来的切片,每个tableRow都代表表中的一行,第一行是表头,第二行是表的内容第一行,以此类推
+因为表中除了表头还有表格内容,因此就不能只根据列名来设置对齐方式,否则会出现第一列的表头被设置了左对齐,
+但是下面的内容没变化,还是居中,因此此时就要根据索引来设置了,tableRow是每次循环totalSlice传递过来的切片,
+每个tableRow都代表表中的一行,第一行是表头,第二行是表的内容第一行,以此类推
 因此,可以先获取要设置的列在表头中的索引,tableRow通过此索引的获取的值也就是要设置的对齐的值
 */
-func setSpecifyColumnAlignment(align int,  tableRow []string,columnIndex []int) {
-        setSpecifyColumnAlign(tableRow,align,columnIndex) 
+func setSpecifyColumnAlignment(tableRow []string,align,foregroundcolor,backgroundcolor int,columnIndex,colorColumnIndex []int) {
+        setSpecifyColumnAlign(tableRow,align,foregroundcolor,backgroundcolor,columnIndex,colorColumnIndex) 
 }
