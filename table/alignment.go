@@ -5,8 +5,16 @@ import (
 )
 
 /*
-设置全部列的对齐方式
-当只有表头或者表头和表内容都存在的时候,都是调用此函数
+   **************************************************
+   * Date:   2024-04-09                             *
+   * Author: gongguan                               *
+   * Email:  1542345123@qq.com                      *
+   **************************************************
+*/
+
+/*
+    设置全部列的对齐方式
+    当只有表头或者表头和表内容都存在的时候,都是调用此函数
 */
 func setAllColumnAlign(align, foregroundcolor, backgroundcolor int, tableAll []string, colorColumnIndex []int) {
 	var tdslice [][]string
@@ -118,7 +126,7 @@ func setAllColumnAlign(align, foregroundcolor, backgroundcolor int, tableAll []s
 }
 
 /*
-设置表中指定列的对齐方式,如果只有表头或者表头和表内容都存在的时候,都会调用此函数
+    设置表中指定列的对齐方式,如果只有表头或者表头和表内容都存在的时候,都会调用此函数
 */
 func setSpecifyColumnAlign(tableColumn []string, align, foregroundcolor, backgroundcolor int, columnIndex, colorColumnIndex []int) {
 	var tdslice [][]string

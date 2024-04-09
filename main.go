@@ -3,7 +3,13 @@ package main
 import (
 	"github.com/gongguan2018/gotable/table"
 )
-
+/*
+   **************************************************
+   * Date:   2024-04-09                             *
+   * Author: gongguan                               *
+   * Email:  1542345123@qq.com                      *
+   **************************************************
+*/
 func main() {
 	tableHead := []string{"MemTotal", "MemUsedhelloworldchina", "Memfree", "SwapTotal", "SwapUsed", "SwapFree"}
 	row := [][]string{}

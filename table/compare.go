@@ -1,5 +1,13 @@
 package table
 
+/*
+   **************************************************
+   * Date:   2024-04-09                             *
+   * Author: gongguan                               *
+   * Email:  1542345123@qq.com                      *
+   **************************************************
+*/
+
 // 查找表头中的列中是否包含输入的要设置的列,如果不包含,说明要设置的列错误,不存在
 func columnNameCompare(columnName []string, tableHeader []string) []string {
 	var columnNotExists []string
