@@ -73,6 +73,7 @@ gotable
 (8)、SetForegroundColor(46)                     青蓝色
 
 (9)、SetForegroundColor(47)                     白色
+演示: MemTotal和MemUsedHelloworldchina设置颜色,MemFree左对齐
 
 ![image](https://github.com/gongguan2018/gotable/assets/40058594/07ee146b-340c-43e4-bafb-a48b8a183da6)
 
