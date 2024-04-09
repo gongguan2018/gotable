@@ -15,7 +15,10 @@ func main() {
 	row = append(row, row3)
 	//初始化
 	t := table.InitTable(tableHead)
-	//设置列名对齐方式(非必填,默认为居中),可选择 0:left,1:right,2:center
+	/*
+	    设置列名对齐方式(非必填,默认为居中),可选择:
+	    0:left,1:right,2:center
+	*/
 	t.SetAlignmentMode(0)
 	/*
             设置列名的对齐方式(非必填),支持多种方式:
@@ -26,19 +29,25 @@ func main() {
 	*/
 	t.SetAlignmentColumn("SwapFree","MemTotal")
 	/*
-            设置颜色: 分为前景色和背景色
-	    前景色: 30(黑色),31(红色),32(绿色),33(黄色),34(蓝色),35(紫红色),36(青蓝色),37(白色)
-	    背景色: 40(黑色),41(红色),42(绿色),43(黄色),44(蓝色),45(紫红色),46(青蓝色),47(白色)
 	    SetColorColumn(): 设置将哪个列设置颜色,非必填,有多种设置方式,如下:
-	        1、什么都不输入:              SetColorColumn(),                     表示设置所有列的颜色
-	        2、只输入"all":               SetColorColumn("all"),                表示设置所有列的颜色 
-	        3、输入的列中包含"all":       SetColorColumn("MemTotal","all")      表示设置所有列的颜色
-	        4、不包含"all",包含指定列:    SetColorColumn("MemTotal","SwarUsed") 表示设置指定列的颜色
+	    1、什么都不输入:              SetColorColumn(),                     表示设置所有列的颜色
+	    2、只输入"all":               SetColorColumn("all"),                表示设置所有列的颜色 
+	    3、输入的列中包含"all":       SetColorColumn("MemTotal","all")      表示设置所有列的颜色
+	    4、不包含"all",包含指定列:    SetColorColumn("MemTotal","SwarUsed") 表示设置指定列的颜色
             SetForegroundColor(): 设置前景色
 	    SetBackgroundColor(): 设置背景色
 	*/
 	t.SetColorColumn("MemTotal")
+	/*
+            设置前景色(非必填,默认为37),可选参数为:
+	    30(黑色),31(红色),32(绿色),33(黄色),34(蓝色),35(紫红色),36(青蓝色),37(白色)
+	*/
 	t.SetForegroundColor(33)
+	/*
+            设置背景色(非必填,默认为40),可选参数为:
+	    40(黑色),41(红色),42(绿色),43(黄色),44(蓝色),45(紫红色),46(青蓝色),47(白色)
+	*/
 	t.SetBackgroundColor(41)
+	//创建表
 	t.CreateTable(tableHead, row)
 }
