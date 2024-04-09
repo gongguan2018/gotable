@@ -3,7 +3,9 @@ Golang Table Library
 这是一个使用Golang实现的表格库,可以实现一些简单的表格展示,功能如下:
 
 1、表格内容换行： 当表格中文本内容超过20个字符的时候,将自动换行
+
 2、表格内容对齐方式, 如下:
+
 (1)、SetAlignmentMode(0) 表示左对齐
 (2)、SetAlignmentMode(1) 表示右对齐
 (3)、SetAlignmentMode(2) 表示剧中对齐
