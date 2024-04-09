@@ -82,3 +82,8 @@ gotable
 
 ![微信截图_20240409115146](https://github.com/gongguan2018/gotable/assets/40058594/a3bee646-8a9a-4e6a-9f14-c9c139983cd2)
 
+演示例子3: 设置Memfree右对齐, MemTotal列为红色背景绿色字体
+
+
+![20240409115723](https://github.com/gongguan2018/gotable/assets/40058594/c5e741d1-2ed1-4af3-abbe-fdde8db7d53f)
+
