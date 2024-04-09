@@ -45,23 +45,23 @@ func checkColumnName(columnName []string) bool {
 		return true
 	}
 }
-func getRepeat(column, tableHeader []string) []string {
-	newMap := make(map[string]int)
-	var newSlice []string
-	for k, v := range tableHeader {
-		_, ok := newMap[v]
-		if !ok {
-			newMap[v] = k
-		}
-	}
-	for _, v := range column {
-		_, ok := newMap[v]
-		if ok {
-			newSlice = append(newSlice, v)
-		}
-	}
-	return newSlice
-}
+//func getRepeat(column, tableHeader []string) []string {
+//	newMap := make(map[string]int)
+//	var newSlice []string
+//	for k, v := range tableHeader {
+//		_, ok := newMap[v]
+//		if !ok {
+//			newMap[v] = k
+//		}
+//	}
+//	for _, v := range column {
+//		_, ok := newMap[v]
+//		if ok {
+//			newSlice = append(newSlice, v)
+//		}
+//	}
+//	return newSlice
+//}
 
 // 获取要设置的字段在表头中的索引
 func getColumnIndex(column, tableHeader []string) []int {
