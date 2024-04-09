@@ -12,7 +12,7 @@ gotable
 
 (3)、SetAlignmentMode(2) 表示剧中对齐
 
-(4)、SetAlignmentMode()  什么都不设置默认表示剧中对齐
+(4)、SetAlignmentMode()  什么都不设置默认表示居中对齐
 
 3、设置表格中要对齐的列: 
 
