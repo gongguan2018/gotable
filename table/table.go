@@ -131,12 +131,12 @@ func (t *Table) SetForegroundColor(foregroundcolor ...int) {
 		if b {
 			t.foregroundcolor = foregroundcolor[0]
 		} else {
-			fmt.Println("foregroundcolor input error,Only one integre can be entered!!!")
+			fmt.Println("foregroundcolor input error,Can only select 30,31,32,33,34,35,36,37")
 			os.Exit(-1)
 		}
 	} else {
 		//输入超过一个值
-		fmt.Println("foregroundcolor input error,Only one integre can be entered!!!")
+		fmt.Println("foregroundcolor input error,Can only select 30,31,32,33,34,35,36,37")
 		os.Exit(-1)
 	}
 }
@@ -152,11 +152,11 @@ func (t *Table) SetBackgroundColor(backgroundcolor ...int) {
 		if b {
 			t.backgroundcolor = backgroundcolor[0]
 		} else {
-			fmt.Println("foregroundcolor input error,Only one integre can be entered!!!")
+			fmt.Println("foregroundcolor input error,Can only select 40,41,42,43,44,45,46,47")
 			os.Exit(-1)
 		}
 	} else {
-		fmt.Println("foregroundcolor input error,Only one integre can be entered!!!")
+		fmt.Println("foregroundcolor input error,Can only select 40,41,42,43,44,45,46,47")
 		os.Exit(-1)
 	}
 }
