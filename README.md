@@ -1,5 +1,5 @@
 # gotable
-Golang Table Library
+gotable
 这是一个使用Golang实现的表格库,可以实现一些简单的表格展示,功能如下:
 
 1、表格内容换行： 当表格中文本内容超过20个字符的时候,将自动换行
@@ -73,3 +73,6 @@ Golang Table Library
 (8)、SetForegroundColor(46)                     青蓝色
 
 (9)、SetForegroundColor(47)                     白色
+
+![image](https://github.com/gongguan2018/gotable/assets/40058594/07ee146b-340c-43e4-bafb-a48b8a183da6)
+
