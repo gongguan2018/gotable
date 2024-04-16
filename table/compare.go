@@ -1,12 +1,12 @@
 package table
 
 /*
-   **************************************************
-   * Date:   2024-04-09                             *
-   * Author: gongguan                               *
-   * Email:  1542345123@qq.com                      *
-   **************************************************
-*/
+ **************************************************
+ * Date:   2024-04-09                             *
+ * Author: gongguan                               *
+ * Email:  1542345123@qq.com                      *
+ **************************************************
+ */
 
 // 查找表头中的列中是否包含输入的要设置的列,如果不包含,说明要设置的列错误,不存在
 func columnNameCompare(columnName []string, tableHeader []string) []string {
@@ -53,6 +53,7 @@ func checkColumnName(columnName []string) bool {
 		return true
 	}
 }
+
 //func getRepeat(column, tableHeader []string) []string {
 //	newMap := make(map[string]int)
 //	var newSlice []string
@@ -103,7 +104,8 @@ func columnInTableHeader(s string, column []string) bool {
 	}
 	return true
 }
-//检查索引index是否在切片索引columnIndex中
+
+// 检查索引index是否在切片索引columnIndex中
 func checkIndex(index int, columnIndex []int) bool {
 	indexMap := make(map[int]bool)
 	for _, v := range columnIndex {

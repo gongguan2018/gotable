@@ -34,7 +34,7 @@ func InitTable(tableHeader []string) *Table {
 		return &Table{}
 	}
 }
-//设置对齐模式,可接收任意数量参数,返回的alignment为int类型切片
+//设置对齐模式,可接收任意数量参数,alignment为int类型切片
 func (t *Table) SetAlignmentMode(alignment ...int) {
 	if len(alignment) == 0 {
 		//如果没有设置alignment,就设置默认模式为居中
@@ -54,7 +54,7 @@ func (t *Table) SetAlignmentMode(alignment ...int) {
 	}
 }
 
-// 设置要对齐的列,接收任意数量参数,返回的columnName为字符串切片
+// 设置要对齐的列,接收任意数量参数,columnName为字符串切片
 func (t *Table) SetAlignmentColumn(columnName ...string) {
 	if len(t.tableHeader) != 0 {
 		var columnNameSlice []string

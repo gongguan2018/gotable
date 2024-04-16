@@ -1,12 +1,12 @@
 package table
 
 /*
-   **************************************************
-   * Date:   2024-04-09                             *
-   * Author: gongguan                               *
-   * Email:  1542345123@qq.com                      *
-   **************************************************
-*/
+ **************************************************
+ * Date:   2024-04-09                             *
+ * Author: gongguan                               *
+ * Email:  1542345123@qq.com                      *
+ **************************************************
+ */
 
 // 检测对齐方式是否有错误,leftAlignment、rightAlignment、centerAlignment都是常量
 func checkColumnAlignment(alignment int) int {

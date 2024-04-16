@@ -106,3 +106,47 @@ func checkSliceIndex(column, tableHeader []string) []int {
 	}
 	return newslice
 }
+//检查两个切片是否相等
+func checksliceequal(a, b []string) int {
+	if len(a) != len(b) {
+		return 2
+	} else {
+		maps := make(map[string]bool)
+		for _, v := range a {
+			if !maps[v] {
+				maps[v] = true
+			}
+		}
+		sum := 0
+		for _, v := range b {
+			if maps[v] {
+				sum += 0
+			} else {
+				sum += 1
+			}
+		}
+		return sum
+	}
+}
+
+func checkintsliceequal(a, b []int) int {
+        if len(a) != len(b) {
+                return 2
+        } else {
+                maps := make(map[int]bool)
+                for _, v := range a {
+                        if !maps[v] {
+                                maps[v] = true
+                        }
+                }
+                sum := 0
+                for _, v := range b {
+                        if maps[v] {
+                                sum += 0
+                        } else {
+                                sum += 1
+                        }
+                }
+                return sum
+        }
+}
