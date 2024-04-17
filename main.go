@@ -19,13 +19,13 @@ func main() {
 	row = append(row, row1)
 	row = append(row, row2)
 	row = append(row, row3)
-	//初始化
+	//初始化表结构
 	t := table.InitTable(tableHead)
 	/*
 	    设置列名对齐方式(非必填,默认为居中),可选择:
 	    0:left,1:right,2:center(近似居中)
 	*/
-	t.SetAlignmentMode(1)
+	t.SetAlignmentMode(0)
 	/*
             设置列名的对齐方式(非必填),支持多种方式:
 	    1、什么都不输入:           t.SetAlignmentColumn(),                     表示将全部列设置对齐
