@@ -92,6 +92,6 @@ gotable
 
 1、首先下载gotable库,命令如下：
 
-"""
+```
    go get github.com/gongguan2018/gotable/table
-"""
+```
