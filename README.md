@@ -147,5 +147,7 @@ func main() {
 go run table.go
 ```
 
+![table](https://github.com/gongguan2018/gotable/assets/40058594/186e984e-b0f5-4147-9af5-166d6f9bad93)
+
 
 
