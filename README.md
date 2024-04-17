@@ -87,3 +87,11 @@ gotable
 
 ![20240409115723](https://github.com/gongguan2018/gotable/assets/40058594/c5e741d1-2ed1-4af3-abbe-fdde8db7d53f)
 
+
+用法:
+
+1、首先下载gotable库,命令如下：
+
+"""
+   go get github.com/gongguan2018/gotable/table
+"""
