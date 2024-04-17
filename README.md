@@ -18,21 +18,21 @@ gotable
 
 (1)、SetAlignmentColumn()                       什么都不输入默认表示设置全部列对齐
 
-(2)、SetAlignmentColumn("MemTotal","all")       包含"all",默认也是设置全部列对齐
+(2)、SetAlignmentColumn("MemTotal","all")       包含"all",默认也是设置全部列对齐,不能为空字符串
 
-(3)、SetAlignmentColumn("all")                  只输入"all",默认也是设置全部列对齐
+(3)、SetAlignmentColumn("all")                  只输入"all",默认也是设置全部列对齐,不能为空字符串
 
-(4)、SetAlignmentColumn("MemTotal","MemFree")   设置MemTotal、MemFree对齐
+(4)、SetAlignmentColumn("MemTotal","MemFree")   设置MemTotal、MemFree对齐,不能为空字符串
 
 4、设置表格中要设置颜色的列
 
 (1)、SetColorColumn()                           什么都不输入默认表示设置全部列的颜色
 
-(2)、SetColorColumn("all")                      只输入"all",表示设置全部列的颜色
+(2)、SetColorColumn("all")                      只输入"all",表示设置全部列的颜色,不能为空字符串
 
-(3)、SetColorColumn("MemTotal","all")           包含"all", 表示设置全部列的颜色
+(3)、SetColorColumn("MemTotal","all")           包含"all", 表示设置全部列的颜色,不能为空字符串
 
-(4)、SetColorColumn("MemTotal","MemFree")       设置MemTotal, MemFree列的颜色
+(4)、SetColorColumn("MemTotal","MemFree")       设置MemTotal, MemFree列的颜色,不能为空字符串
 
 5、设置表格中文字的前景色,也就是字体的颜色
 
