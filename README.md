@@ -95,3 +95,54 @@ gotable
 ```
    go get github.com/gongguan2018/gotable/table
 ```
+
+或 如果通过go mod管理的项目， 可以在编辑完代码后执行如下命令也是可以的：
+
+```
+go mod tidy
+```
+
+2、创建一个table.go文件, 内容如下：
+
+```
+package main
+
+import (
+        "github.com/gongguan2018/gotable/table"
+)
+
+func main() {
+        tableHead := []string{"country", "city", "street"}
+        row := [][]string{}
+        row1 := []string{"china", "shenzhen", "fuyong"}
+        row2 := []string{"china", "daqing", "ranghulu"}
+        row = append(row, row1)
+        row = append(row, row2)
+        //初始化表结构
+        t := table.InitTable(tableHead)
+        //设置对齐模式
+        t.SetAlignmentMode()
+        //设置对齐的列,默认所有
+        t.SetAlignmentColumn()
+        //设置要改变颜色的列,默认所有
+        t.SetColorColumn()
+        /*
+                            设置前景色(非必填,默认为37),可选参数为:
+                            30(黑色),31(红色),32(绿色),33(黄色),34(蓝色),35(紫红色),36(青蓝色),37(白色)
+        */
+        t.SetForegroundColor()
+        /*
+                            设置背景色(非必填,默认为40),可选参数为:
+                            40(黑色),41(红色),42(绿色),43(黄色),44(蓝色),45(紫红色),46(青蓝色),47(白色)
+        */
+        t.SetBackgroundColor()
+        //创建表
+        t.CreateTable(tableHead, row)
+}
+
+```
+3、最后运行table.go, 如下：
+
+```
+go run table.go
+```
